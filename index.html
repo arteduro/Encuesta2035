@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Político 2024</title>
+  <style>
+    /* Estilos base */
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9fafb;
+      color: #111827;
+    }
+
+    /* Layout */
+    .min-h-screen {
+      min-height: 100vh;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .max-w-2xl {
+      max-width: 42rem;
+    }
+
+    .w-full {
+      width: 100%;
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Componentes */
+    .card {
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .button-default {
+      background-color: #3b82f6;
+      color: white;
+    }
+
+    .button-default:hover {
+      background-color: #2563eb;
+    }
+
+    .button-outline {
+      background-color: transparent;
+      color: #374151;
+      border-color: #d1d5db;
+    }
+
+    .button-outline:hover {
+      background-color: #f3f4f6;
+      border-color: #9ca3af;
+    }
+
+    /* Progress bar */
+    .progress {
+      width: 100%;
+      height: 0.5rem;
+      background-color: #e5e7eb;
+      border-radius: 0.25rem;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background-color: #3b82f6;
+      transition: width 0.5s ease;
+    }
+
+    /* Result bars */
+    .result-bar-container {
+      height: 1rem;
+      background-color: #e5e7eb;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .result-bar {
+      height: 100%;
+      transition: width 0.5s ease;
+    }
+
+    /* Tipografía */
+    .font-title {
+      font-weight: 800;
+    }
+
+    .font-body {
+      font-weight: 400;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* Espaciado */
+    .space-y-4 > * + * {
+      margin-top: 1rem;
+    }
+
+    .space-y-6 > * + * {
+      margin-top: 1.5rem;
+    }
+
+    .space-y-8 > * + * {
+      margin-top: 2rem;
+    }
+
+    .py-8 {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .p-4 {
+      padding: 1rem;
+    }
+
+    .p-6 {
+      padding: 1.5rem;
+    }
+
+    .p-8 {
+      padding: 2rem;
+    }
+
+    /* Colores */
+    .bg-blue-500 {
+      background-color: #3b82f6;
+    }
+
+    .bg-green-500 {
+      background-color: #10b981;
+    }
+
+    .bg-gray-200 {
+      background-color: #e5e7eb;
+    }
+
+    .text-gray-600 {
+      color: #4b5563;
+    }
+
+    .text-gray-800 {
+      color: #1f2937;
+    }
+
+    .text-red-500 {
+      color: #ef4444;
+    }
+
+    .text-blue-500 {
+      color: #3b82f6;
+    }
+
+    /* Animaciones */
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Efectos */
+    .hover-scale-105:hover {
+      transform: scale(1.05);
+    }
+
+    .transition-all {
+      transition-property: all;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
+    }
+
+    .duration-500 {
+      transition-duration: 500ms;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+    }
+
+    .gap-3 {
+      gap: 0.75rem;
+    }
+
+    /* Background gradient */
+    .gradient-bg {
+      background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+    }
+
+    /* Iconos */
+    .icon {
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    /* Text sizes */
+    .text-sm {
+      font-size: 0.875rem;
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+    }
+
+    .text-xl {
+      font-size: 1.25rem;
+    }
+
+    .text-3xl {
+      font-size: 1.875rem;
+    }
+
+    .text-4xl {
+      font-size: 2.25rem;
+    }
+
+    /* Utilities */
+    .justify-between {
+      justify-content: space-between;
+    }
+
+    .justify-start {
+      justify-content: flex-start;
+    }
+
+    .text-left {
+      text-align: left;
+    }
+
+    .h-auto {
+      height: auto;
+    }
+
+    .overflow-hidden {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    // Datos de las preguntas
+    const questions = [
+      {
+        id: 1,
+        text: "El Estado debería tener un rol activo en la economía.",
+        options: [
+          { text: "Totalmente de acuerdo", value: 2 },
+          { text: "De acuerdo", value: 1 },
+          { text: "En desacuerdo", value: -1 },
+          { text: "Totalmente en desacuerdo", value: -2 }
+        ]
+      },
+      {
+        id: 2,
+        text: "La libertad económica es más importante que la igualdad social.",
+        options: [
+          { text: "Totalmente de acuerdo", value: 2 },
+          { text: "De acuerdo", value: 1 },
+          { text: "En desacuerdo", value: -1 },
+          { text: "Totalmente en desacuerdo", value: -2 }
+        ]
+      },
+      {
+        id: 3,
+        text: "La educación y la salud deberían ser servicios públicos gratuitos.",
+        options: [
+          { text: "Totalmente de acuerdo", value: 2 },
+          { text: "De acuerdo", value: 1 },
+          { text: "En desacuerdo", value: -1 },
+          { text: "Totalmente en desacuerdo", value: -2 }
+        ]
+      },
+      {
+        id: 4,
+        text: "El matrimonio entre personas del mismo sexo debería ser legal.",
+        options: [
+          { text: "Totalmente de acuerdo", value: 2 },
+          { text: "De acuerdo", value: 1 },
+          { text: "En desacuerdo", value: -1 },
+          { text: "Totalmente en desacuerdo", value: -2 }
+        ]
+      },
+      {
+        id: 5,
+        text: "La inmigración enriquece cultural y económicamente al país.",
+        options: [
+          { text: "Totalmente de acuerdo", value: 2 },
+          { text: "De acuerdo", value: 1 },
+          { text: "En desacuerdo", value: -1 },
+          { text: "Totalmente en desacuerdo", value: -2 }
+        ]
+      },
+      {
+        id: 6,
+        text: "El cambio climático debería ser una prioridad política.",
+        options: [
+          { text: "Totalmente de acuerdo", value: 2 },
+          { text: "De acuerdo", value: 1 },
+          { text: "En desacuerdo", value: -1 },
+          { text: "Totalmente en desacuerdo", value: -2 }
+        ]
+      },
+      {
+        id: 7,
+        text: "La legalización de las drogas reduciría problemas sociales.",
+        options: [
+          { text: "Totalmente de acuerdo", value: 2 },
+          { text: "De acuerdo", value: 1 },
+          { text: "En desacuerdo", value: -1 },
+          { text: "Totalmente en desacuerdo", value: -2 }
+        ]
+      },
+      {
+        id: 8,
+        text: "El aborto debería ser legal y accesible.",
+        options: [
+          { text: "Totalmente de acuerdo", value: 2 },
+          { text: "De acuerdo", value: 1 },
+          { text: "En desacuerdo", value: -1 },
+          { text: "Totalmente en desacuerdo", value: -2 }
+        ]
+      },
+      {
+        id: 9,
+        text: "La religión debería influir en las políticas públicas.",
+        options: [
+          { text: "Totalmente de acuerdo", value: 2 },
+          { text: "De acuerdo", value: 1 },
+          { text: "En desacuerdo", value: -1 },
+          { text: "Totalmente en desacuerdo", value: -2 }
+        ]
+      },
+      {
+        id: 10,
+        text: "Las grandes empresas deberían pagar más impuestos.",
+        options: [
+          { text: "Totalmente de acuerdo", value: 2 },
+          { text: "De acuerdo", value: 1 },
+          { text: "En desacuerdo", value: -1 },
+          { text: "Totalmente en desacuerdo", value: -2 }
+        ]
+      }
+    ];
+
+    // Aplicación
+    document.addEventListener('DOMContentLoaded', () => {
+      const app = document.getElementById('app');
+      let state = {
+        answers: {},
+        isStarted: false,
+        showResults: false
+      };
+
+      function render() {
+        const progress = (Object.keys(state.answers).length / questions.length) * 100;
+
+        if (!state.isStarted) {
+          renderStartScreen();
+          return;
+        }
+
+        if (state.showResults) {
+          renderResults();
+          return;
+        }
+
+        renderQuestions(progress);
+      }
+
+      function renderStartScreen() {
+        app.innerHTML = `
+          <div class="min-h-screen flex items-center justify-center gradient-bg p-4">
+            <div class="card max-w-2xl w-full p-8 space-y-6 animate-fade-in">
+              <h1 class="text-4xl font-title text-center">Test Político 2024</h1>
+              <p class="text-center text-gray-600 font-body">
+                Descubre tu tendencia política respondiendo 10 preguntas sobre diferentes aspectos sociales, políticos y económicos.
+              </p>
+              <div class="flex justify-center">
+                <button id="startBtn" class="button button-default px-8 py-4 text-lg transition-all hover-scale-105">
+                  Comenzar Test
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        document.getElementById('startBtn').addEventListener('click', () => {
+          state.isStarted = true;
+          render();
+        });
+      }
+
+      function renderQuestions(progress) {
+        let html = `
+          <div class="min-h-screen gradient-bg py-8 px-4">
+            <div class="max-w-2xl mx-auto space-y-8">
+              <div class="space-y-4">
+                <div class="progress">
+                  <div class="progress-bar" style="width: ${progress}%"></div>
+                </div>
+                <p class="text-center text-sm text-gray-600 font-body">
+                  Pregunta ${Object.keys(state.answers).length} de ${questions.length}
+                </p>
+              </div>
+              <div class="space-y-6">
+        `;
+
+        questions.forEach(question => {
+          html += `
+            <div class="card p-6 space-y-4 animate-fade-in">
+              <h2 class="text-xl font-title">${question.text}</h2>
+              <div class="grid gap-3">
+          `;
+
+          question.options.forEach(option => {
+            const isSelected = state.answers[question.id] === option.value;
+            html += `
+              <button 
+                class="button ${isSelected ? 'button-default' : 'button-outline'} w-full justify-start text-left h-auto p-4 transition-all hover:scale-[1.02] font-body"
+                data-question-id="${question.id}"
+                data-value="${option.value}"
+              >
+                ${option.text}
+              </button>
+            `;
+          });
+
+          html += `
+              </div>
+            </div>
+          `;
+        });
+
+        if (Object.keys(state.answers).length === questions.length) {
+          html += `
+            <button id="showResultsBtn" class="button button-default w-full py-4 text-lg font-body">
+              Ver Resultados
+            </button>
+          `;
+        }
+
+        html += `
+              </div>
+              <footer class="text-center text-gray-600 py-4 space-x-2 font-body">
+                <span>Desarrollado con</span>
+                <span class="icon text-red-500">❤</span>
+                <span>por Edgar Arteaga Durán</span>
+                <span class="icon text-blue-500">🚀</span>
+              </footer>
+            </div>
+          </div>
+        `;
+
+        app.innerHTML = html;
+
+        document.querySelectorAll('[data-question-id]').forEach(button => {
+          button.addEventListener('click', (e) => {
+            const questionId = parseInt(e.currentTarget.getAttribute('data-question-id'));
+            const value = parseInt(e.currentTarget.getAttribute('data-value'));
+            state.answers[questionId] = value;
+            render();
+          });
+        });
+
+        const resultsBtn = document.getElementById('showResultsBtn');
+        if (resultsBtn) {
+          resultsBtn.addEventListener('click', () => {
+            state.showResults = true;
+            render();
+          });
+        }
+      }
+
+      function calculateResults() {
+        let economicScore = 0;
+        let socialScore = 0;
+
+        // Economic questions (1, 2, 3, 10)
+        economicScore += (state.answers[1] || 0) * -1; // Invertido para alineación derecha
+        economicScore += (state.answers[2] || 0);
+        economicScore += (state.answers[3] || 0) * -1;
+        economicScore += (state.answers[10] || 0) * -1;
+
+        // Social questions (4-9)
+        socialScore += (state.answers[4] || 0);
+        socialScore += (state.answers[5] || 0);
+        socialScore += (state.answers[6] || 0);
+        socialScore += (state.answers[7] || 0);
+        socialScore += (state.answers[8] || 0);
+        socialScore += (state.answers[9] || 0) * -1; // Invertido
+
+        // Normalizar a escala -10 a 10
+        economicScore = (economicScore / 8) * 10;
+        socialScore = (socialScore / 12) * 10;
+
+        return { economicScore, socialScore };
+      }
+
+      function getIdeology(economicScore, socialScore) {
+        if (economicScore >= 0) {
+          return socialScore >= 0 ? "Liberal Progresista" : "Liberal Conservador";
+        } else {
+          return socialScore >= 0 ? "Socialdemócrata" : "Socialista Conservador";
+        }
+      }
+
+      function renderResults() {
+        const { economicScore, socialScore } = calculateResults();
+        const ideology = getIdeology(economicScore, socialScore);
+
+        app.innerHTML = `
+          <div class="min-h-screen gradient-bg py-8 px-4">
+            <div class="max-w-2xl mx-auto">
+              <div class="card p-8 space-y-6 animate-fade-in">
+                <h2 class="text-3xl font-title text-center">Tus Resultados</h2>
+                
+                <div class="space-y-8">
+                  <div class="space-y-4">
+                    <h3 class="text-xl font-title">Tu Ideología: ${ideology}</h3>
+                    <p class="text-gray-600 font-body">
+                      Basado en tus respuestas, tus tendencias políticas se alinean con una perspectiva ${ideology.toLowerCase()}.
+                    </p>
+                  </div>
+
+                  <div class="space-y-4">
+                    <div class="space-y-2">
+                      <p class="font-body text-sm text-gray-600">Eje Económico: ${economicScore.toFixed(1)}</p>
+                      <div class="result-bar-container">
+                        <div 
+                          class="result-bar bg-blue-500 duration-500"
+                          style="width: ${((economicScore + 10) / 20) * 100}%"
+                        ></div>
+                      </div>
+                      <div class="flex justify-between text-sm text-gray-500 font-body">
+                        <span>Izquierda</span>
+                        <span>Derecha</span>
+                      </div>
+                    </div>
+
+                    <div class="space-y-2">
+                      <p class="font-body text-sm text-gray-600">Eje Social: ${socialScore.toFixed(1)}</p>
+                      <div class="result-bar-container">
+                        <div 
+                          class="result-bar bg-green-500 duration-500"
+                          style="width: ${((socialScore + 10) / 20) * 100}%"
+                        ></div>
+                      </div>
+                      <div class="flex justify-between text-sm text-gray-500 font-body">
+                        <span>Conservador</span>
+                        <span>Progresista</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button id="restartBtn" class="button button-default w-full font-body">
+                    Realizar el Test Nuevamente
+                  </button>
+                </div>
+              </div>
+
+              <footer class="text-center text-gray-600 py-4 space-x-2 font-body">
+                <span>Desarrollado con</span>
+                <span class="icon text-red-500">❤</span>
+                <span>por Edgar Arteaga Durán</span>
+                <span class="icon text-blue-500">🚀</span>
+              </footer>
+            </div>
+          </div>
+        `;
+
+        document.getElementById('restartBtn').addEventListener('click', () => {
+          state = {
+            answers: {},
+            isStarted: false,
+            showResults: false
+          };
+          render();
+        });
+      }
+
+      // Render inicial
+      render();
+    });
+  </script>
+</body>
+</html>
